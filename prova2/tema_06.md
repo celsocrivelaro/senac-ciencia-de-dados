@@ -1,24 +1,24 @@
-# 📊 Tráfego de Dados de Internet – MAWI Traffic Archive
+# 📊 Passageiros de Voos – U.S. Bureau of Transportation Statistics (BTS)
 
 ## 📘 Descrição Detalhada do Dataset
-O MAWI Working Group, parte da WIDE Project Association, coleta dados de tráfego da Internet a partir de roteadores backbone em pontos estratégicos da rede. Os pacotes são capturados anonimizados e amostrados, gerando arquivos de traços de tráfego que são publicados periodicamente no MAWI Traffic Archive.
+O Bureau of Transportation Statistics, órgão oficial do governo dos Estados Unidos, coleta dados de aviação diretamente das companhias aéreas comerciais. Essas informações são enviadas periodicamente ao BTS, validadas e disponibilizadas ao público por meio do portal TranStats.
 
 ### 🔍 Quem extraiu os dados e como foram coletados?
-O MAWI Working Group, parte da WIDE Project Association, coleta dados de tráfego da Internet a partir de roteadores backbone em pontos estratégicos da rede. Os pacotes são capturados anonimizados e amostrados, gerando arquivos de traços de tráfego que são publicados periodicamente no MAWI Traffic Archive.
+O Bureau of Transportation Statistics, órgão oficial do governo dos Estados Unidos, coleta dados de aviação diretamente das companhias aéreas comerciais. Essas informações são enviadas periodicamente ao BTS, validadas e disponibilizadas ao público por meio do portal TranStats.
 
 ## 📁 Tipo de Dados Coletados
-Fluxos de pacotes de rede, timestamps de chegada, endereços (anonimizados), protocolos e tamanhos de pacotes, formando séries temporais de volume de tráfego.
+Número de passageiros transportados, número de voos, datas, rotas (origem/destino) e outras métricas associadas à aviação comercial.
 
 ## 🕒 Período da Série Temporal
-📆 **Início:** 2001-01-01  
-📆 **Fim:** Presente (atualizado com novos traços)
+📆 **Início:** ≈ 2003-01-01  
+📆 **Fim:** Presente (atualizado periodicamente)
 
 ## 🔢 Tamanho Aproximado
-➡️ **Milhões de registros em múltiplos arquivos de traço amostras**
+➡️ **Dezenas de milhares de dias de observação (quando agregados por dia) amostras**
 
 ## 🔗 Links Oficiais
-- 👉 **Página oficial do dataset:** https://mawi.wide.ad.jp/mawi/  
-- 📥 **Download direto:** https://mawi.wide.ad.jp/mawi/ditl/
+- 👉 **Página oficial do dataset:** https://www.transtats.bts.gov  
+- 📥 **Download direto:** https://www.transtats.bts.gov/DL_SelectFields.asp?Table_ID=236
 
 ---
 

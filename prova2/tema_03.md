@@ -1,24 +1,24 @@
-# 📊 Tráfego de Dados de Internet – MAWI Traffic Archive
+# 📊 Volume de Tráfego em Rodovia (Metro Interstate Traffic Volume)
 
 ## 📘 Descrição Detalhada do Dataset
-O MAWI Working Group, parte da WIDE Project Association, coleta dados de tráfego da Internet a partir de roteadores backbone em pontos estratégicos da rede. Os pacotes são capturados anonimizados e amostrados, gerando arquivos de traços de tráfego que são publicados periodicamente no MAWI Traffic Archive.
+Este dataset foi montado a partir de sensores de tráfego instalados na rodovia interestadual I-94 próxima a Minneapolis. O Departamento de Transportes de Minnesota (MnDOT) coleta continuamente esses dados e pesquisadores organizaram a base, que foi então disponibilizada no repositório da UCI.
 
 ### 🔍 Quem extraiu os dados e como foram coletados?
-O MAWI Working Group, parte da WIDE Project Association, coleta dados de tráfego da Internet a partir de roteadores backbone em pontos estratégicos da rede. Os pacotes são capturados anonimizados e amostrados, gerando arquivos de traços de tráfego que são publicados periodicamente no MAWI Traffic Archive.
+Este dataset foi montado a partir de sensores de tráfego instalados na rodovia interestadual I-94 próxima a Minneapolis. O Departamento de Transportes de Minnesota (MnDOT) coleta continuamente esses dados e pesquisadores organizaram a base, que foi então disponibilizada no repositório da UCI.
 
 ## 📁 Tipo de Dados Coletados
-Fluxos de pacotes de rede, timestamps de chegada, endereços (anonimizados), protocolos e tamanhos de pacotes, formando séries temporais de volume de tráfego.
+Volume de tráfego (contagem de veículos por hora), temperatura, condições climáticas, presença de feriados e dados de data/hora.
 
 ## 🕒 Período da Série Temporal
-📆 **Início:** 2001-01-01  
-📆 **Fim:** Presente (atualizado com novos traços)
+📆 **Início:** 2012-10-02  
+📆 **Fim:** 2018-09-30
 
 ## 🔢 Tamanho Aproximado
-➡️ **Milhões de registros em múltiplos arquivos de traço amostras**
+➡️ **≈ 48.000 amostras**
 
 ## 🔗 Links Oficiais
-- 👉 **Página oficial do dataset:** https://mawi.wide.ad.jp/mawi/  
-- 📥 **Download direto:** https://mawi.wide.ad.jp/mawi/ditl/
+- 👉 **Página oficial do dataset:** https://archive.ics.uci.edu/dataset/381/metro+interstate+traffic+volume  
+- 📥 **Download direto:** https://archive.ics.uci.edu/static/public/381/metro+interstate+traffic+volume.zip
 
 ---
 

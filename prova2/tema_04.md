@@ -1,24 +1,24 @@
-# 📊 Tráfego de Dados de Internet – MAWI Traffic Archive
+# 📊 Preços Diários do Bitcoin (BTC-USD – Yahoo Finance)
 
 ## 📘 Descrição Detalhada do Dataset
-O MAWI Working Group, parte da WIDE Project Association, coleta dados de tráfego da Internet a partir de roteadores backbone em pontos estratégicos da rede. Os pacotes são capturados anonimizados e amostrados, gerando arquivos de traços de tráfego que são publicados periodicamente no MAWI Traffic Archive.
+Os dados são coletados automaticamente pela infraestrutura da Yahoo Finance, que agrega cotações de múltiplas corretoras e mercados globais de criptomoedas. As séries são obtidas a partir de registros de negociação diários e disponibilizadas em formato tabular via interface web e download direto em CSV.
 
 ### 🔍 Quem extraiu os dados e como foram coletados?
-O MAWI Working Group, parte da WIDE Project Association, coleta dados de tráfego da Internet a partir de roteadores backbone em pontos estratégicos da rede. Os pacotes são capturados anonimizados e amostrados, gerando arquivos de traços de tráfego que são publicados periodicamente no MAWI Traffic Archive.
+Os dados são coletados automaticamente pela infraestrutura da Yahoo Finance, que agrega cotações de múltiplas corretoras e mercados globais de criptomoedas. As séries são obtidas a partir de registros de negociação diários e disponibilizadas em formato tabular via interface web e download direto em CSV.
 
 ## 📁 Tipo de Dados Coletados
-Fluxos de pacotes de rede, timestamps de chegada, endereços (anonimizados), protocolos e tamanhos de pacotes, formando séries temporais de volume de tráfego.
+Preço de abertura, fechamento, máxima, mínima, volume negociado e data de cada pregão do Bitcoin em dólares americanos (BTC-USD).
 
 ## 🕒 Período da Série Temporal
-📆 **Início:** 2001-01-01  
-📆 **Fim:** Presente (atualizado com novos traços)
+📆 **Início:** 2014-09-17  
+📆 **Fim:** Presente (atualizado diariamente)
 
 ## 🔢 Tamanho Aproximado
-➡️ **Milhões de registros em múltiplos arquivos de traço amostras**
+➡️ **≈ 4.000+ (dados diários) amostras**
 
 ## 🔗 Links Oficiais
-- 👉 **Página oficial do dataset:** https://mawi.wide.ad.jp/mawi/  
-- 📥 **Download direto:** https://mawi.wide.ad.jp/mawi/ditl/
+- 👉 **Página oficial do dataset:** https://finance.yahoo.com/quote/BTC-USD/history  
+- 📥 **Download direto:** https://query1.finance.yahoo.com/v7/finance/download/BTC-USD
 
 ---
 

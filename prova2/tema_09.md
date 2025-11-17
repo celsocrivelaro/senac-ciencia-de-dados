@@ -1,24 +1,24 @@
-# 📊 Tráfego de Dados de Internet – MAWI Traffic Archive
+# 📊 Sismos Globais – USGS Earthquake Catalog
 
 ## 📘 Descrição Detalhada do Dataset
-O MAWI Working Group, parte da WIDE Project Association, coleta dados de tráfego da Internet a partir de roteadores backbone em pontos estratégicos da rede. Os pacotes são capturados anonimizados e amostrados, gerando arquivos de traços de tráfego que são publicados periodicamente no MAWI Traffic Archive.
+O catálogo sísmico global é mantido pelo United States Geological Survey (USGS). Os dados são coletados a partir de redes de sismógrafos distribuídos mundialmente e consolidados automaticamente, passando por processos de verificação por sismólogos antes de serem disponibilizados ao público.
 
 ### 🔍 Quem extraiu os dados e como foram coletados?
-O MAWI Working Group, parte da WIDE Project Association, coleta dados de tráfego da Internet a partir de roteadores backbone em pontos estratégicos da rede. Os pacotes são capturados anonimizados e amostrados, gerando arquivos de traços de tráfego que são publicados periodicamente no MAWI Traffic Archive.
+O catálogo sísmico global é mantido pelo United States Geological Survey (USGS). Os dados são coletados a partir de redes de sismógrafos distribuídos mundialmente e consolidados automaticamente, passando por processos de verificação por sismólogos antes de serem disponibilizados ao público.
 
 ## 📁 Tipo de Dados Coletados
-Fluxos de pacotes de rede, timestamps de chegada, endereços (anonimizados), protocolos e tamanhos de pacotes, formando séries temporais de volume de tráfego.
+Data/hora dos eventos, magnitude, profundidade, latitude, longitude e outras características associadas aos terremotos registrados.
 
 ## 🕒 Período da Série Temporal
-📆 **Início:** 2001-01-01  
-📆 **Fim:** Presente (atualizado com novos traços)
+📆 **Início:** ≈ 1960-01-01  
+📆 **Fim:** Presente (atualizado em tempo quase real)
 
 ## 🔢 Tamanho Aproximado
-➡️ **Milhões de registros em múltiplos arquivos de traço amostras**
+➡️ **Centenas de milhares a milhões de eventos amostras**
 
 ## 🔗 Links Oficiais
-- 👉 **Página oficial do dataset:** https://mawi.wide.ad.jp/mawi/  
-- 📥 **Download direto:** https://mawi.wide.ad.jp/mawi/ditl/
+- 👉 **Página oficial do dataset:** https://earthquake.usgs.gov/earthquakes/search  
+- 📥 **Download direto:** https://earthquake.usgs.gov/fdsnws/event/1/
 
 ---
 

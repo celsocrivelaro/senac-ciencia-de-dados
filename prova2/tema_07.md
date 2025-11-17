@@ -1,24 +1,24 @@
-# 📊 Tráfego de Dados de Internet – MAWI Traffic Archive
+# 📊 Consumo de Energia em Edifícios – Building Performance Database (BPD)
 
 ## 📘 Descrição Detalhada do Dataset
-O MAWI Working Group, parte da WIDE Project Association, coleta dados de tráfego da Internet a partir de roteadores backbone em pontos estratégicos da rede. Os pacotes são capturados anonimizados e amostrados, gerando arquivos de traços de tráfego que são publicados periodicamente no MAWI Traffic Archive.
+O Building Performance Database é mantido pelo U.S. Department of Energy (DOE). Os dados são coletados de edifícios comerciais e residenciais reais, provenientes de medições de consumo de energia, registros de concessionárias e estudos de eficiência energética. Após anonimização e agregação, o DOE disponibiliza a base via OpenEI.
 
 ### 🔍 Quem extraiu os dados e como foram coletados?
-O MAWI Working Group, parte da WIDE Project Association, coleta dados de tráfego da Internet a partir de roteadores backbone em pontos estratégicos da rede. Os pacotes são capturados anonimizados e amostrados, gerando arquivos de traços de tráfego que são publicados periodicamente no MAWI Traffic Archive.
+O Building Performance Database é mantido pelo U.S. Department of Energy (DOE). Os dados são coletados de edifícios comerciais e residenciais reais, provenientes de medições de consumo de energia, registros de concessionárias e estudos de eficiência energética. Após anonimização e agregação, o DOE disponibiliza a base via OpenEI.
 
 ## 📁 Tipo de Dados Coletados
-Fluxos de pacotes de rede, timestamps de chegada, endereços (anonimizados), protocolos e tamanhos de pacotes, formando séries temporais de volume de tráfego.
+Consumo de eletricidade, gás, características dos edifícios, uso de energia ao longo do tempo e atributos de desempenho energético.
 
 ## 🕒 Período da Série Temporal
-📆 **Início:** 2001-01-01  
-📆 **Fim:** Presente (atualizado com novos traços)
+📆 **Início:** ≈ 1990-01-01  
+📆 **Fim:** ≈ 2020-12-31
 
 ## 🔢 Tamanho Aproximado
-➡️ **Milhões de registros em múltiplos arquivos de traço amostras**
+➡️ **Milhões de registros em diferentes edifícios amostras**
 
 ## 🔗 Links Oficiais
-- 👉 **Página oficial do dataset:** https://mawi.wide.ad.jp/mawi/  
-- 📥 **Download direto:** https://mawi.wide.ad.jp/mawi/ditl/
+- 👉 **Página oficial do dataset:** https://openei.org/doe-opendata/dataset/building-performance-database  
+- 📥 **Download direto:** https://openei.org/datasets/files/961/pub/bpd_public.zip
 
 ---
 

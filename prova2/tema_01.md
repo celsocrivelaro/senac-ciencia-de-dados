@@ -1,24 +1,24 @@
-# 📊 Tráfego de Dados de Internet – MAWI Traffic Archive
+# 📊 Consumo de Energia Residencial (UCI Household Electric Power Consumption)
 
 ## 📘 Descrição Detalhada do Dataset
-O MAWI Working Group, parte da WIDE Project Association, coleta dados de tráfego da Internet a partir de roteadores backbone em pontos estratégicos da rede. Os pacotes são capturados anonimizados e amostrados, gerando arquivos de traços de tráfego que são publicados periodicamente no MAWI Traffic Archive.
+O dataset foi coletado por medidores instalados em uma residência na França e posteriormente disponibilizado pela Electricité de France (EDF) para a comunidade acadêmica. A Universidade da Califórnia, Irvine (UCI), organizou e publicou a base em seu repositório de aprendizado de máquina. Os dados são obtidos por medição contínua de consumo elétrico em intervalos de 1 minuto.
 
 ### 🔍 Quem extraiu os dados e como foram coletados?
-O MAWI Working Group, parte da WIDE Project Association, coleta dados de tráfego da Internet a partir de roteadores backbone em pontos estratégicos da rede. Os pacotes são capturados anonimizados e amostrados, gerando arquivos de traços de tráfego que são publicados periodicamente no MAWI Traffic Archive.
+O dataset foi coletado por medidores instalados em uma residência na França e posteriormente disponibilizado pela Electricité de France (EDF) para a comunidade acadêmica. A Universidade da Califórnia, Irvine (UCI), organizou e publicou a base em seu repositório de aprendizado de máquina. Os dados são obtidos por medição contínua de consumo elétrico em intervalos de 1 minuto.
 
 ## 📁 Tipo de Dados Coletados
-Fluxos de pacotes de rede, timestamps de chegada, endereços (anonimizados), protocolos e tamanhos de pacotes, formando séries temporais de volume de tráfego.
+Potência ativa e reativa, tensão, intensidade de corrente e medições de sub-metria elétrica (em watts).
 
 ## 🕒 Período da Série Temporal
-📆 **Início:** 2001-01-01  
-📆 **Fim:** Presente (atualizado com novos traços)
+📆 **Início:** 2006-12-16  
+📆 **Fim:** 2010-11-26
 
 ## 🔢 Tamanho Aproximado
-➡️ **Milhões de registros em múltiplos arquivos de traço amostras**
+➡️ **≈ 2.075.000 amostras**
 
 ## 🔗 Links Oficiais
-- 👉 **Página oficial do dataset:** https://mawi.wide.ad.jp/mawi/  
-- 📥 **Download direto:** https://mawi.wide.ad.jp/mawi/ditl/
+- 👉 **Página oficial do dataset:** https://archive.ics.uci.edu/dataset/235/individual+household+electric+power+consumption  
+- 📥 **Download direto:** https://archive.ics.uci.edu/static/public/235/individual+household+electric+power+consumption.zip
 
 ---
 

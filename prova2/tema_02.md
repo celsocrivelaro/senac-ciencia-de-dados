@@ -1,24 +1,24 @@
-# 📊 Tráfego de Dados de Internet – MAWI Traffic Archive
+# 📊 Qualidade do Ar – PM2.5 em Beijing
 
 ## 📘 Descrição Detalhada do Dataset
-O MAWI Working Group, parte da WIDE Project Association, coleta dados de tráfego da Internet a partir de roteadores backbone em pontos estratégicos da rede. Os pacotes são capturados anonimizados e amostrados, gerando arquivos de traços de tráfego que são publicados periodicamente no MAWI Traffic Archive.
+Os dados foram coletados por estações oficiais de monitoramento do ar na cidade de Beijing e consolidados pelo Beijing Municipal Environmental Monitoring Center. A UCI disponibiliza essa base após curadoria e tratamento. A coleta é feita de forma contínua, com registros horários de poluentes e variáveis meteorológicas.
 
 ### 🔍 Quem extraiu os dados e como foram coletados?
-O MAWI Working Group, parte da WIDE Project Association, coleta dados de tráfego da Internet a partir de roteadores backbone em pontos estratégicos da rede. Os pacotes são capturados anonimizados e amostrados, gerando arquivos de traços de tráfego que são publicados periodicamente no MAWI Traffic Archive.
+Os dados foram coletados por estações oficiais de monitoramento do ar na cidade de Beijing e consolidados pelo Beijing Municipal Environmental Monitoring Center. A UCI disponibiliza essa base após curadoria e tratamento. A coleta é feita de forma contínua, com registros horários de poluentes e variáveis meteorológicas.
 
 ## 📁 Tipo de Dados Coletados
-Fluxos de pacotes de rede, timestamps de chegada, endereços (anonimizados), protocolos e tamanhos de pacotes, formando séries temporais de volume de tráfego.
+Concentrações horárias de PM2.5, PM10, SO2, NO2, CO, O3, além de temperatura, pressão, direção e velocidade do vento.
 
 ## 🕒 Período da Série Temporal
-📆 **Início:** 2001-01-01  
-📆 **Fim:** Presente (atualizado com novos traços)
+📆 **Início:** 2010-01-01  
+📆 **Fim:** 2014-12-31
 
 ## 🔢 Tamanho Aproximado
-➡️ **Milhões de registros em múltiplos arquivos de traço amostras**
+➡️ **≈ 43.000 amostras**
 
 ## 🔗 Links Oficiais
-- 👉 **Página oficial do dataset:** https://mawi.wide.ad.jp/mawi/  
-- 📥 **Download direto:** https://mawi.wide.ad.jp/mawi/ditl/
+- 👉 **Página oficial do dataset:** https://archive.ics.uci.edu/dataset/360/beijing+pm2+5+data  
+- 📥 **Download direto:** https://archive.ics.uci.edu/static/public/360/beijing+pm2+5+data.zip
 
 ---
 

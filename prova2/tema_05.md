@@ -1,24 +1,24 @@
-# 📊 Tráfego de Dados de Internet – MAWI Traffic Archive
+# 📊 Temperatura Global – NOAA Global Historical Climatology Network (GHCN)
 
 ## 📘 Descrição Detalhada do Dataset
-O MAWI Working Group, parte da WIDE Project Association, coleta dados de tráfego da Internet a partir de roteadores backbone em pontos estratégicos da rede. Os pacotes são capturados anonimizados e amostrados, gerando arquivos de traços de tráfego que são publicados periodicamente no MAWI Traffic Archive.
+A base é produzida pela NOAA (National Oceanic and Atmospheric Administration), agência oficial do governo dos EUA responsável por clima e oceanos. Os dados são coletados em milhares de estações meteorológicas ao redor do mundo e passam por processos de controle de qualidade antes da publicação no repositório GHCN.
 
 ### 🔍 Quem extraiu os dados e como foram coletados?
-O MAWI Working Group, parte da WIDE Project Association, coleta dados de tráfego da Internet a partir de roteadores backbone em pontos estratégicos da rede. Os pacotes são capturados anonimizados e amostrados, gerando arquivos de traços de tráfego que são publicados periodicamente no MAWI Traffic Archive.
+A base é produzida pela NOAA (National Oceanic and Atmospheric Administration), agência oficial do governo dos EUA responsável por clima e oceanos. Os dados são coletados em milhares de estações meteorológicas ao redor do mundo e passam por processos de controle de qualidade antes da publicação no repositório GHCN.
 
 ## 📁 Tipo de Dados Coletados
-Fluxos de pacotes de rede, timestamps de chegada, endereços (anonimizados), protocolos e tamanhos de pacotes, formando séries temporais de volume de tráfego.
+Temperaturas máximas, mínimas e médias diárias ou mensais, precipitação e outras variáveis meteorológicas associadas a estações específicas.
 
 ## 🕒 Período da Série Temporal
-📆 **Início:** 2001-01-01  
-📆 **Fim:** Presente (atualizado com novos traços)
+📆 **Início:** ≈ 1850-01-01  
+📆 **Fim:** Presente (atualizado periodicamente)
 
 ## 🔢 Tamanho Aproximado
-➡️ **Milhões de registros em múltiplos arquivos de traço amostras**
+➡️ **Milhões de registros ao redor do globo amostras**
 
 ## 🔗 Links Oficiais
-- 👉 **Página oficial do dataset:** https://mawi.wide.ad.jp/mawi/  
-- 📥 **Download direto:** https://mawi.wide.ad.jp/mawi/ditl/
+- 👉 **Página oficial do dataset:** https://www.ncei.noaa.gov/products/land-based-station/global-historical-climatology-network-daily  
+- 📥 **Download direto:** https://www.ncei.noaa.gov/pub/data/ghcn/daily/
 
 ---
 

@@ -1,24 +1,24 @@
-# 📊 Tráfego de Dados de Internet – MAWI Traffic Archive
+# 📊 Vendas de Supermercado – Store Sales Time Series Forecasting (Equador)
 
 ## 📘 Descrição Detalhada do Dataset
-O MAWI Working Group, parte da WIDE Project Association, coleta dados de tráfego da Internet a partir de roteadores backbone em pontos estratégicos da rede. Os pacotes são capturados anonimizados e amostrados, gerando arquivos de traços de tráfego que são publicados periodicamente no MAWI Traffic Archive.
+Os dados foram disponibilizados pela rede de supermercados Corporación Favorita em parceria com órgãos governamentais do Equador. A base foi organizada e publicada para a competição "Store Sales – Time Series Forecasting" no Kaggle, com séries temporais diárias de vendas por loja e produto.
 
 ### 🔍 Quem extraiu os dados e como foram coletados?
-O MAWI Working Group, parte da WIDE Project Association, coleta dados de tráfego da Internet a partir de roteadores backbone em pontos estratégicos da rede. Os pacotes são capturados anonimizados e amostrados, gerando arquivos de traços de tráfego que são publicados periodicamente no MAWI Traffic Archive.
+Os dados foram disponibilizados pela rede de supermercados Corporación Favorita em parceria com órgãos governamentais do Equador. A base foi organizada e publicada para a competição "Store Sales – Time Series Forecasting" no Kaggle, com séries temporais diárias de vendas por loja e produto.
 
 ## 📁 Tipo de Dados Coletados
-Fluxos de pacotes de rede, timestamps de chegada, endereços (anonimizados), protocolos e tamanhos de pacotes, formando séries temporais de volume de tráfego.
+Vendas diárias por loja e por item, informações de calendário, feriados regionais, promoções e metadados sobre as lojas.
 
 ## 🕒 Período da Série Temporal
-📆 **Início:** 2001-01-01  
-📆 **Fim:** Presente (atualizado com novos traços)
+📆 **Início:** 2013-01-01  
+📆 **Fim:** 2017-08-15
 
 ## 🔢 Tamanho Aproximado
-➡️ **Milhões de registros em múltiplos arquivos de traço amostras**
+➡️ **Centenas de milhões de linhas no total amostras**
 
 ## 🔗 Links Oficiais
-- 👉 **Página oficial do dataset:** https://mawi.wide.ad.jp/mawi/  
-- 📥 **Download direto:** https://mawi.wide.ad.jp/mawi/ditl/
+- 👉 **Página oficial do dataset:** https://www.kaggle.com/competitions/store-sales-time-series-forecasting  
+- 📥 **Download direto:** https://www.kaggle.com/competitions/store-sales-time-series-forecasting/data
 
 ---
 
