@@ -17,8 +17,8 @@ Volume de tráfego (contagem de veículos por hora), temperatura, condições cl
 ➡️ **≈ 48.000 amostras**
 
 ## 🔗 Links Oficiais
-- 👉 **Página oficial do dataset:** https://archive.ics.uci.edu/dataset/381/metro+interstate+traffic+volume  
-- 📥 **Download direto:** https://archive.ics.uci.edu/static/public/381/metro+interstate+traffic+volume.zip
+- 👉 **Página oficial do dataset:** https://archive.ics.uci.edu/dataset/492/metro+interstate+traffic+volume
+- 📥 **Download direto:** https://archive.ics.uci.edu/static/public/492/metro+interstate+traffic+volume.zip
 
 ---
 
