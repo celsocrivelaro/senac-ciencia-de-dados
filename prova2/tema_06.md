@@ -18,7 +18,7 @@ Número de passageiros transportados, número de voos, datas, rotas (origem/dest
 
 ## 🔗 Links Oficiais
 - 👉 **Página oficial do dataset:** https://www.transtats.bts.gov  
-- 📥 **Download direto:** https://www.transtats.bts.gov/DL_SelectFields.asp?Table_ID=236
+- 📥 **Download direto:** https://www.transtats.bts.gov/Data_Elements.aspx?Data=1
 
 ---
 
