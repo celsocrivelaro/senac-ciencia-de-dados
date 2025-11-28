@@ -17,8 +17,8 @@ Temperaturas máximas, mínimas e médias diárias ou mensais, precipitação e 
 ➡️ **Milhões de registros ao redor do globo amostras**
 
 ## 🔗 Links Oficiais
-- 👉 **Página oficial do dataset:** https://www.ncei.noaa.gov/products/land-based-station/global-historical-climatology-network-daily  
-- 📥 **Download direto:** https://www.ncei.noaa.gov/pub/data/ghcn/daily/
+- 👉 **Página oficial do dataset:** https://www.ncei.noaa.gov/products/land-based-station/global-historical-climatology-network-daily
+- 📥 **Download direto:** https://www.ncei.noaa.gov/data/global-historical-climatology-network-daily/access/
 
 ---
 

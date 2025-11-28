@@ -17,8 +17,8 @@ Consumo de eletricidade, gás, características dos edifícios, uso de energia a
 ➡️ **Milhões de registros em diferentes edifícios amostras**
 
 ## 🔗 Links Oficiais
-- 👉 **Página oficial do dataset:** https://openei.org/doe-opendata/dataset/building-performance-database  
-- 📥 **Download direto:** https://openei.org/datasets/files/961/pub/bpd_public.zip
+- 👉 **Página oficial do dataset:** https://data.openei.org/submissions/145
+- 📥 **Download direto (API):** https://buildings.lbl.gov/cbs/bpd-api-documentation/
 
 ---
 

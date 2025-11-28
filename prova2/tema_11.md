@@ -17,8 +17,8 @@ Consumo de água residencial, comercial ou industrial em intervalos diários ou 
 ➡️ **Dezenas de milhares de registros agregados por região/tempo amostras**
 
 ## 🔗 Links Oficiais
-- 👉 **Página oficial do dataset:** https://data.gov.au  
-- 📥 **Download direto:** https://data.gov.au/data
+- 👉 **Página oficial do dataset:** https://www.abs.gov.au/statistics/environment/environmental-accounts/water-account-australia/latest-release
+- 📥 **Download direto:** https://www.abs.gov.au/statistics/environment/environmental-accounts/water-account-australia/latest-release#data-downloads
 
 ---
 
