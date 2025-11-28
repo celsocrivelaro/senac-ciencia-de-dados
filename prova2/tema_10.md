@@ -17,8 +17,8 @@ Velocidade e direção do vento, potência gerada, status operacional da turbina
 ➡️ **Dezenas de milhares de registros por turbina amostras**
 
 ## 🔗 Links Oficiais
-- 👉 **Página oficial do dataset:** https://archive.ics.uci.edu  
-- 📥 **Download direto:** https://archive.ics.uci.edu
+- 👉 **Página oficial do dataset:** https://zenodo.org/records/5841834
+- 📥 **Download direto:** https://zenodo.org/records/5841834/files/Kelmarsh_SCADA_2020_3086.zip
 
 ---
 
