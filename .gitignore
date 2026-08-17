@@ -1,0 +1,59 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Ambientes virtuais
+.venv/
+venv/
+env/
+ENV/
+
+# Segredos e configuração local — nunca comite chave de API
+.env
+.env.*
+!.env.example
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Testes, lint e tipos
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.coverage
+htmlcov/
+
+# Modelos treinados e artefatos serializados
+*.pkl
+*.joblib
+*.h5
+*.onnx
+
+# IDEs e editores
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Dados
+# Datasets pequenos podem ser versionados; os grandes devem ser baixados por
+# script. Descomente conforme a política que você adotar para a disciplina:
+# *.csv
+# *.parquet
+# *.xlsx
+# *.sqlite
+# *.db
+# dados/
