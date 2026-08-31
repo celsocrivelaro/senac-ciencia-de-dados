@@ -1,0 +1,87 @@
+# =====================================================================
+# Cubo da aula 04 em Postgres + Metabase.
+#
+#   docker compose up
+#
+# Espere a mensagem "Metabase pronto" e abra http://localhost:4445
+# (login estudante@sp.senac.br / senha senac2026). O cubo já vem cadastrado.
+#
+# As portas são deslocadas de propósito — 5433 e 4445 em vez de 5432 e
+# 4444 — para não colidir com o Postgres e o Metabase que a VM da
+# disciplina já roda.
+# =====================================================================
+
+name: aula04-cubo
+
+x-cubo: &cubo
+  POSTGRES_DB: cubo
+  POSTGRES_USER: aluno
+  POSTGRES_PASSWORD: estudante
+
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      <<: *cubo
+    ports:
+      - "5433:5432"
+    volumes:
+      # Tudo em /docker-entrypoint-initdb.d/ roda na primeira subida,
+      # em ordem alfabética, quando o volume de dados está vazio.
+      - ./init:/docker-entrypoint-initdb.d:ro
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      # O -d/-U evita o falso positivo do primeiro boot, quando o
+      # entrypoint sobe um Postgres temporário só para rodar o init.
+      test: ["CMD-SHELL", "pg_isready -U aluno -d cubo"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  metabase:
+    # Mesma versão que a VM da disciplina instala.
+    image: metabase/metabase:v0.63.5
+    ports:
+      - "4445:3000"
+    environment:
+      # Banco interno do Metabase: H2 no volume abaixo. É o suficiente
+      # para sala de aula — em produção a própria Metabase recomenda
+      # apontar para um Postgres.
+      MB_DB_FILE: /metabase-data/metabase.db
+      MB_ANON_TRACKING_ENABLED: "false"
+    volumes:
+      - mbdata:/metabase-data
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-sf", "http://localhost:3000/api/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 40
+      start_period: 60s
+
+  # Roda uma vez, provisiona o Metabase pela API e sai.
+  metabase-setup:
+    image: curlimages/curl:8.11.1
+    depends_on:
+      metabase:
+        condition: service_started
+    environment:
+      <<: *cubo
+      MB_URL: http://metabase:3000
+      MB_PORTA_HOST: "4445"
+      MB_ADMIN_EMAIL: estudante@sp.senac.br
+      MB_ADMIN_SENHA: senac2026
+      MB_ADMIN_NOME: Aluno
+      MB_ADMIN_SOBRENOME: Senac
+      MB_SITE_NOME: Aula 04 - Cubo
+      MB_BANCO_NOME: Cubo da aula
+    volumes:
+      - ./metabase-setup.sh:/setup.sh:ro
+    entrypoint: ["sh", "/setup.sh"]
+    restart: "no"
+
+volumes:
+  pgdata:
+  mbdata:
