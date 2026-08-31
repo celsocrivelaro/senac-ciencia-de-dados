@@ -7,7 +7,7 @@
     1. Soma de vendas por marca e por segmento
 5. Fazer uma operação de ROLL-UP
     1. Soma de vendas Por País > Marca
-    2. Soma de vendas Por Semana > Dia
+    2. Soma de vendas Por número da Semana > Dia da semana
 6. Fazer uma operação de SLICE
     1. Cortar por Nike
 7. Fazer uma operação de DICE
