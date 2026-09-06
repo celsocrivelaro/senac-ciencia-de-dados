@@ -50,7 +50,7 @@ First_pokemon,Second_pokemon,Winner
 191,668,668
 ```
 
-Trata-se de batalhas individuais **simuladas**: os resultados foram produzidos por um programa, e não por partidas efetivamente disputadas. Essa característica é retomada na seção 8.
+Trata-se de batalhas individuais **simuladas**: os resultados foram produzidos por um programa, e não por partidas efetivamente disputadas. Todo padrão medido nas análises é mediado por esse programa.
 
 ### 1.3 Taxa de vitórias
 
@@ -311,22 +311,6 @@ Esta análise verifica se o modelo projetado constitui de fato um modelo dimensi
 
 As fontes contêm atributos não explorados pelas sete análises obrigatórias: habitat, cor, forma, taxa de captura, felicidade base, altura, peso, grupos de ovo, quantidade de habilidades e a distinção entre forma Mega e forma padrão. O arquivo `combats.csv` registra ainda qual combatente atacou primeiro, informação não explorada em profundidade pelas análises obrigatórias.
 
-## 8. Discussão obrigatória
-
-As análises 5 e 6, consideradas em conjunto, admitem leitura articulada. Caso o padrão observado corresponda ao esperado para este conjunto de dados, a diferença de velocidade discriminará vencedores e perdedores com nitidez elevada, ao passo que a vantagem de tipo, mecânica central da franquia, apresentará efeito reduzido ou nulo.
-
-Admitida essa hipótese, o `RELATORIO.md` deve avaliar qual das duas interpretações a seguir é sustentada pelos dados:
-
-- a velocidade constitui o atributo determinante em uma batalha Pokémon; ou
-- o simulador que gerou este conjunto de dados atribui peso excessivo à velocidade e peso reduzido à efetividade de tipos.
-
-A argumentação, limitada a 15 linhas, deve considerar dois pontos:
-
-- **A natureza simulada da fonte**, registrada na seção 1.2. Os combates não foram disputados: um programa determinou cada resultado. Todo padrão medido é mediado por esse programa.
-- **O procedimento capaz de distinguir as duas hipóteses.** Que dado adicional seria necessário, ou que teste seria aplicável. O campo `damage_relations` da PokéAPI fornece o comportamento previsto pelas regras do jogo, ao passo que as análises medem o comportamento observado no simulador.
-
-Não há resposta única. A avaliação considera a consistência da argumentação e o tratamento crítico da fonte.
-
 ## Documentação
 
 Todo o conteúdo exigido por este enunciado deve estar documentado no repositório. A ausência de documentação implica desconto na avaliação.
@@ -345,7 +329,6 @@ O `RELATORIO.md` documenta a leitura dos resultados, e deve conter:
 
 - **O resultado de cada uma das oito análises** (a saída da consulta, em tabela Markdown ou captura de tela).
 - **A interpretação de cada uma das oito análises**, quanto ao que o resultado informa sobre o fenômeno.
-- **A discussão** exigida na seção 8.
 
 A documentação deve ser específica do projeto entregue. Um `README.md` genérico, aplicável a qualquer pipeline equivalente e sem referência às decisões tomadas pelo grupo, é considerado ausência de documentação.
 
@@ -362,7 +345,7 @@ Estrutura esperada do repositório:
 ```
 repositorio/
 ├── README.md                     # integrantes e a documentação exigida
-├── RELATORIO.md                  # interpretação das análises e a discussão
+├── RELATORIO.md                  # resultados e interpretação das análises
 ├── requirements.txt
 ├── docker-compose.yml            # MongoDB e PostgreSQL
 ├── extrair.py                    # fontes  -> bronze  (MongoDB)
