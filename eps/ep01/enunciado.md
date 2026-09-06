@@ -252,7 +252,7 @@ Cabem ao `publicar.py` as responsabilidades de orquestração, não supridas pel
 
 Essa é a distinção entre um arquivo SQL e uma etapa de pipeline: a etapa verifica o próprio resultado e admite reexecução.
 
-O MongoDB e o PostgreSQL estão disponíveis na máquina virtual da disciplina e no arquivo `docker-compose.yml` da aula 04.
+O MongoDB e o PostgreSQL estão disponíveis na máquina virtual da disciplina. O grupo pode utilizá-los de qualquer forma que prefira (máquina virtual da disciplina, instalação local ou contêineres), desde que o `README.md` documente o procedimento.
 
 ## 6. Requisitos e entregáveis
 
@@ -317,7 +317,7 @@ Todo o conteúdo exigido por este enunciado deve estar documentado no repositór
 
 O `README.md` deve cobrir, no mínimo:
 
-- **O procedimento de execução do pipeline a partir de uma máquina com Docker e Python**, incluindo a inicialização do MongoDB e do PostgreSQL, e a ordem de execução dos scripts.
+- **O procedimento de execução do pipeline**, incluindo a inicialização do MongoDB e do PostgreSQL, e a ordem de execução dos scripts.
 - **A justificativa do uso de banco de documentos na camada bronze**, com referência a características concretas do JSON retornado pela PokéAPI.
 - **A frase do grão** da tabela fato e o diagrama do esquema estrela projetado.
 - **As seis decisões de modelagem da seção 4.2**, individualmente, com a justificativa de cada escolha e seus custos.
@@ -347,7 +347,6 @@ repositorio/
 ├── README.md                     # integrantes e a documentação exigida
 ├── RELATORIO.md                  # resultados e interpretação das análises
 ├── requirements.txt
-├── docker-compose.yml            # MongoDB e PostgreSQL
 ├── extrair.py                    # fontes  -> bronze  (MongoDB)
 ├── carregar.py                   # bronze  -> silver  (PostgreSQL)
 ├── publicar.py                   # silver  -> gold    (PostgreSQL)
