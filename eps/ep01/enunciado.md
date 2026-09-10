@@ -28,11 +28,15 @@ Base: `https://pokeapi.co/api/v2/`. API REST pública, sem autenticação, manti
 | `/pokemon-species/{id}` | A **espécie**, com a classificação | `generation`, `habitat`, `color`, `shape`, `growth_rate`, `capture_rate`, `base_happiness`, `is_legendary`, `is_mythical`, `is_baby`, `varieties[]` |
 | `/type/{id}` | A mecânica de combate | `name`, `damage_relations` |
 
-**Escopo obrigatório:** gerações I a VI, correspondentes às 721 primeiras espécies, acrescidas das formas Mega, que constam do conjunto de dados de batalhas.
+**Escopo obrigatório:** gerações I a VI, correspondentes às 721 primeiras espécies, acrescidas de **todas as formas alternativas** dessas espécies, relacionadas no campo `varieties[]` de cada uma.
+
+As formas alternativas não se restringem às Mega. O conjunto de dados de batalhas possui 800 registros para 721 espécies, e as 79 linhas excedentes compreendem, além das formas Mega, as formas Primal de Kyogre e Groudon e um conjunto de formas de outra natureza: `Deoxys Attack/Defense/Speed Forme`, `Giratina Altered/Origin Forme`, `Shaymin Sky Forme`, as formas `Therian` de Tornadus, Thundurus e Landorus, `Kyurem Black` e `Kyurem White`, `Keldeo Resolute Forme`, `Meloetta Pirouette Forme`, `Darmanitan Zen Mode`, os `Cloak` de Wormadam, os `Size` de Pumpkaboo e Gourgeist, `Aegislash Blade/Shield Forme` e `Hoopa Unbound`. Extrair apenas as formas Mega inviabiliza a conciliação de cerca de trinta registros que participam de combates.
 
 O endpoint `/type/` retorna **21 tipos**, e não 18. Os identificadores de 1 a 18 correspondem aos tipos reais; `stellar` (19), `unknown` (10001) e `shadow` (10002) não existem no jogo que originou os dados de batalha. A decisão quanto a filtrá-los cabe ao grupo e deve ser justificada no `README.md`.
 
-O campo `damage_relations` de cada tipo contém seis listas — `double_damage_to`, `half_damage_to`, `no_damage_to` e as três correspondentes com sufixo `_from`. Em conjunto, elas definem a **matriz de efetividade** de 18 por 18 posições: o fator pelo qual um tipo atacante multiplica o dano causado a um tipo defensor, com valores 0, 0,5, 1 ou 2. Essa matriz é insumo da análise 6.
+O campo `damage_relations` de cada tipo contém seis listas — `double_damage_to`, `half_damage_to`, `no_damage_to` e as três correspondentes com sufixo `_from`. Em conjunto, elas definem a **matriz de efetividade** de 18 por 18 posições: o fator pelo qual um tipo atacante multiplica o dano causado a um tipo defensor, com valores 0, 0,5, 1 ou 2. Essa matriz é insumo das análises 6 e 7.
+
+Cabe distinguir a matriz do **multiplicador efetivo de um confronto**. A matriz relaciona um tipo a outro tipo e assume os quatro valores acima. O multiplicador efetivo relaciona um tipo atacante a um Pokémon defensor: quando o defensor possui dois tipos, os dois fatores se multiplicam, e o resultado assume qualquer dos seis valores 0, 0,25, 0,5, 1, 2 ou 4. Qual dos dois a análise 6 utiliza é objeto da decisão 3 da seção 4.2.
 
 ### 1.2 Conjunto de dados de batalhas
 
@@ -67,7 +71,7 @@ Os três problemas a seguir estão documentados porque o objetivo de aprendizage
 
 **Problema 1 — O campo `#` do `pokemon.csv` não corresponde ao número da Pokédex.**
 
-Trata-se de um índice sequencial de 1 a 800 no qual as formas Mega ocupam linhas próprias:
+Trata-se de um índice sequencial de 1 a 800 no qual as formas alternativas ocupam linhas próprias, imediatamente após a forma padrão da espécie:
 
 ```
 7,Charizard,Fire,Flying,78,84,78,109,85,100,1,False
@@ -91,7 +95,9 @@ A ausência não decorre de falha de coleta: o conceito de habitat existe apenas
 
 Os problemas 2 e 3 se manifestam de forma idêntica no dado, como valor nulo em uma coluna, e exigem tratamentos distintos na modelagem. Aplicar o mesmo tratamento a ambos constitui erro conceitual.
 
-Registre-se ainda a distinção entre **forma** e **espécie**: as formas Mega possuem identificadores superiores a 10000 na PokéAPI, sendo `charizard-mega-x` o identificador 10034, e apresentam `is_default` com valor falso. Uma iteração de 1 a 721 não as alcança; elas são referenciadas no campo `varieties[]` da espécie correspondente. Formas Mega existem em `/pokemon/` e não existem em `/pokemon-species/`.
+Registre-se ainda a distinção entre **forma** e **espécie**: as formas alternativas possuem identificadores superiores a 10000 na PokéAPI, sendo `charizard-mega-x` o identificador 10034, e apresentam `is_default` com valor falso. Uma iteração de 1 a 721 não as alcança; elas são referenciadas no campo `varieties[]` da espécie correspondente. Essas formas existem em `/pokemon/` e não existem em `/pokemon-species/`.
+
+Decorre daí uma consequência para a modelagem: os atributos de espécie — geração, habitat, cor, forma corporal, raridade — não estão disponíveis para as formas alternativas, e devem ser herdados da espécie a que pertencem. O procedimento adotado para essa herança deve constar do `README.md`.
 
 ## 2. Arquitetura exigida
 
@@ -161,7 +167,9 @@ Não há solução única. Há modelos que sustentam as análises da seção 7 c
 - **RS3 — Chaves substitutas.** Define-se **chave substituta** (*surrogate key*) como o identificador inteiro gerado pelo próprio repositório analítico, sem significado no sistema de origem. Toda dimensão deve possuir uma. As chaves naturais das fontes — o número da Pokédex e o campo `#` do CSV — devem constar como atributos, nunca como chave primária ou estrangeira, por constituírem o registro auditável da conciliação.
 - **RS4 — Ausência de chave estrangeira nula.** Toda chave estrangeira da fato deve referenciar uma linha existente. A ausência deve ser representada por **membro especial** de dimensão, definido como a linha dedicada que representa explicitamente a ausência, em lugar do valor nulo. A definição de quais dimensões requerem membros especiais, em que quantidade e sob que denominação decorre da seção 1.4.
 - **RS5 — Integridade declarada no banco.** Restrições `PRIMARY KEY` em todas as dimensões e `FOREIGN KEY` em todas as chaves da fato. Uma carga inconsistente deve ser recusada pelo PostgreSQL, e não detectada posteriormente nas análises.
-- **RS6 — Métricas aditivas.** As análises da seção 7 devem ser obtidas por `SUM`, `AVG` e `COUNT` sobre colunas numéricas da fato. A necessidade de reprocessar texto ou de consultar outra camada para responder a uma análise indica posicionamento incorreto das métricas.
+- **RS6 — Métricas aditivas.** As **análises 3 a 7 e a proposta pelo grupo**, que versam sobre as batalhas, devem ser obtidas por `SUM`, `AVG` e `COUNT` sobre colunas numéricas da fato. A necessidade de reprocessar texto ou de consultar outra camada para responder a uma análise indica posicionamento incorreto das métricas.
+
+  As **análises 1 e 2 não se submetem a este requisito**: são contagens e médias sobre o cadastro, e se obtêm das dimensões. Calculá-las a partir da fato incorre em dupla contagem, uma vez que cada Pokémon comparece a cerca de 125 combates — a média de velocidade por tipo passaria a ser ponderada pelo número de combates disputados, o que responde a outra pergunta.
 - **RS7 — Efetividade de tipos consultável em SQL.** O conteúdo de `damage_relations` deve ser materializado no silver de modo que a análise 6 seja respondida por operação de junção. Solução baseada em estrutura de dados interna ao script Python não satisfaz o requisito.
 - **RS8 — Suficiência.** O modelo deve responder às sete análises obrigatórias e à análise proposta pelo grupo sem acesso à camada bronze, à API ou aos arquivos CSV.
 
@@ -217,7 +225,11 @@ Valores de referência para verificação de consistência: 50.000 combates, apr
 
 Schema `gold`. Aplica-se aqui o mesmo princípio da camada anterior: os requisitos são definidos, o desenho cabe ao grupo.
 
-O requisito é que **cada análise final sobre as batalhas (análises 3 a 7 e a proposta pelo grupo) seja atendida por uma tabela do schema `gold`** já agregada no grão da pergunta correspondente. À consulta final não cabe agregar, realizar junções com dimensões ou filtrar o esquema estrela: ela lê dados previamente consolidados, na forma `SELECT ... FROM gold.<tabela>`.
+O requisito é que **cada análise final sobre as batalhas (análises 3 a 7 e a proposta pelo grupo) seja atendida por uma tabela do schema `gold`** já agregada no grão da pergunta correspondente. À consulta final não cabe agregar nem percorrer o esquema estrela: ela lê dados previamente consolidados, na forma `SELECT ... FROM gold.<tabela>`.
+
+**As cláusulas `WHERE`, `ORDER BY` e `LIMIT` sobre a tabela do gold são permitidas**, uma vez que selecionam e ordenam sem recalcular: a análise 3 pede os dez maiores e os dez menores valores, e a análise 7 pede a identificação das posições divergentes, e ambas se resolvem por ordenação e filtro sobre dado já agregado. **Não são admitidos** `GROUP BY`, funções de agregação, junção com tabelas do schema `silver` e leitura da camada bronze; a presença de qualquer um deles indica que a agregação não foi materializada.
+
+O corte mínimo de combates exigido pela análise 3 deve estar **materializado como coluna** na tabela do gold — a contagem de combates de cada Pokémon —, e não aplicado durante a carga. Assim o valor do corte permanece alterável na consulta, sem reexecução do pipeline, e a quantidade de combates fica disponível ao lado da taxa de vitórias, como determina a seção 1.3.
 
 **A camada consiste em dado materializado**, produzido uma vez pelo pipeline e lido repetidamente pelas consultas finais. A troca de custo de escrita por custo de leitura é a razão de existir da camada.
 
@@ -256,7 +268,7 @@ O MongoDB e o PostgreSQL estão disponíveis na máquina virtual da disciplina. 
 
 ## 6. Requisitos e entregáveis
 
-- **R1 — Extração da API.** Script `extrair.py` que obtém `/pokemon`, `/pokemon-species` e `/type` para o escopo definido, incluindo as formas Mega, e grava o conteúdo na camada bronze sem modificação. A segunda execução consecutiva do script deve realizar zero requisições.
+- **R1 — Extração da API.** Script `extrair.py` que obtém `/pokemon`, `/pokemon-species` e `/type` para o escopo definido na seção 1.1, incluindo **todas as formas alternativas** das 721 espécies, e grava o conteúdo na camada bronze sem modificação. A segunda execução consecutiva do script deve realizar zero requisições.
 - **R2 — Extração dos arquivos CSV.** O mesmo script, ou um segundo script, carrega `pokemon.csv` e `combats.csv` na camada bronze, com um documento por linha, preservando os valores como texto quando a conversão for ambígua.
 - **R3 — Linhagem e idempotência.** Todo documento da camada bronze contém `_fonte`, `_url` ou caminho do arquivo, e `_ingerido_em`. A carga utiliza `upsert` com `_id` derivado da chave natural. A segunda execução não duplica documentos.
 - **R4 — Conciliação de chaves.** O script `carregar.py` resolve a correspondência entre o campo `#` do CSV e o número da Pokédex por nome. A estratégia de normalização deve ser descrita no `README.md`, acompanhada de um **relatório de conciliação**, na forma de arquivo ou da tabela `silver.log_conciliacao`, contendo a quantidade de registros conciliados, a relação dos não conciliados e o tratamento aplicado a estes. O descarte silencioso de registros não conciliados não é admitido.
@@ -273,7 +285,7 @@ A avaliação não se restringe à leitura do código. Os seguintes procedimento
 
 - **Os três scripts serão executados duas vezes consecutivas**, na ordem, a partir de instâncias vazias do MongoDB e do PostgreSQL. A segunda execução não pode duplicar documentos ou linhas, nem realizar requisições à PokéAPI.
 - **O script `carregar.py` será executado sem acesso à rede.** A falha nessa condição demonstra que o script consulta a API ou os arquivos originais, e não a camada bronze.
-- **Uma das perguntas das análises 3 a 7 será formulada** e deve ser respondida por `SELECT` simples sobre uma tabela do schema `gold`. A necessidade de agregar ou juntar tabelas para respondê-la indica que a camada gold não cumpre sua função.
+- **Uma das perguntas das análises 3 a 7 será formulada** e deve ser respondida por leitura de uma única tabela do schema `gold`, nos termos da seção 5: `WHERE`, `ORDER BY` e `LIMIT` são admitidos; `GROUP BY`, funções de agregação e junção com o `silver` indicam que a camada gold não cumpre sua função.
 - **Será formulada ao modelo uma pergunta de negócio não constante deste enunciado**, de natureza equivalente às oito análises. Ela deve ser respondível por uma consulta sobre o schema `silver`, sem alteração do esquema, sem acesso à camada bronze e sem releitura dos arquivos CSV. Um modelo dimensional destina-se a responder perguntas não previstas em sua construção.
 
 ## 7. Análises
@@ -294,7 +306,7 @@ O enunciado especifica o que cada análise deve responder. A forma de obtê-la a
 3. **Taxa de vitórias por Pokémon**, com os dez maiores e os dez menores valores. São 50.000 combates distribuídos de forma não uniforme entre aproximadamente 800 Pokémon. Um Pokémon com três combates e 100% de vitórias representa ruído estatístico, e não desempenho superior. Deve-se estabelecer um número mínimo de combates, justificar o corte adotado e apresentar a quantidade de combates ao lado da taxa de vitórias.
 4. **Taxa de vitórias por tipo primário**, ordenada. Verificar a existência de tipo dominante.
 5. **Relação entre diferença de velocidade e vitória.** Agrupar os confrontos por faixa de diferença de velocidade entre os combatentes e calcular a taxa de vitórias de cada faixa. A quantidade de faixas e a posição dos cortes cabem ao grupo, e devem ser justificadas, uma vez que alteram a leitura do resultado.
-6. **Relação entre vantagem de tipo e vitória.** Cruzar o resultado dos confrontos com a matriz de efetividade obtida da PokéAPI e calcular a taxa de vitórias por multiplicador, para os valores 0, 0,5, 1 e 2. Caso a mecânica do jogo esteja refletida nos dados, o multiplicador 2 deve corresponder a taxa de vitórias significativamente superior. Esta análise verifica a decisão 3 da seção 4.2: sem modelagem da efetividade, ela não é obtenível em SQL.
+6. **Relação entre vantagem de tipo e vitória.** Cruzar o resultado dos confrontos com a efetividade obtida da PokéAPI e calcular a taxa de vitórias por multiplicador, com uma linha por multiplicador existente no modelo. Os valores possíveis são 0, 0,5, 1 e 2 quando se considera apenas o tipo primário do defensor, e 0, 0,25, 0,5, 1, 2 e 4 quando se consideram seus dois tipos, conforme a distinção da seção 1.1. Qual dos dois critérios foi adotado decorre da decisão 3 da seção 4.2 e deve ser declarado no `README.md`. Caso a mecânica do jogo esteja refletida nos dados, os multiplicadores superiores a 1 devem corresponder a taxa de vitórias significativamente superior; **um resultado que não mostre esse efeito, corretamente apurado e interpretado, constitui resposta válida** — as batalhas são simuladas, e o programa que as produziu pode não ter empregado a tabela de tipos. Esta análise verifica a decisão 3 da seção 4.2: sem modelagem da efetividade, ela não é obtenível em SQL.
 7. **Matriz de confronto entre tipos**, de 18 por 18 posições, com a taxa de vitórias do tipo atacante contra o tipo defensor e o multiplicador de efetividade correspondente. Identificar as posições em que os dois valores divergem.
 
 ### Análise proposta pelo grupo
@@ -309,7 +321,7 @@ Além das sete análises especificadas, o grupo deve propor e entregar uma oitav
 
 Esta análise verifica se o modelo projetado constitui de fato um modelo dimensional, e não uma estrutura ajustada às sete perguntas do enunciado. A necessidade de retornar à camada bronze, reabrir um arquivo CSV ou alterar o esquema do silver para respondê-la indica insuficiência do desenho da seção 4.
 
-As fontes contêm atributos não explorados pelas sete análises obrigatórias: habitat, cor, forma, taxa de captura, felicidade base, altura, peso, grupos de ovo, quantidade de habilidades e a distinção entre forma Mega e forma padrão. O arquivo `combats.csv` registra ainda qual combatente atacou primeiro, informação não explorada em profundidade pelas análises obrigatórias.
+As fontes contêm atributos não explorados pelas sete análises obrigatórias: habitat, cor, forma, taxa de captura, felicidade base, altura, peso, grupos de ovo, quantidade de habilidades e a distinção entre forma alternativa e forma padrão. O arquivo `combats.csv` registra ainda qual combatente atacou primeiro, informação não explorada em profundidade pelas análises obrigatórias.
 
 ## Documentação
 
