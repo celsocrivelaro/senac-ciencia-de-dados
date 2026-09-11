@@ -254,7 +254,7 @@ Esta etapa possui script próprio, `publicar.py`, cujo funcionamento difere dos 
 
 As transformações anteriores requerem Python por atravessarem fronteiras tecnológicas — de HTTP para documento, e de documento para tabela relacional. Esta transformação ocorre integralmente no PostgreSQL, na forma `INSERT INTO gold.<tabela> SELECT ... FROM silver.<tabela>`, operação de conjunto executada de modo mais eficiente pelo próprio banco.
 
-Constitui prática inadequada, vedada por este requisito, transferir o conteúdo do silver para a memória do processo Python por meio de bibliotecas de manipulação de dados tabulares, agregá-lo nessa estrutura e reinseri-lo no gold. O resultado é equivalente, mas o procedimento transporta 100.000 linhas pela rede duas vezes para executar uma agregação que o banco realiza localmente, e não é escalável.
+Constitui prática inadequada, vedada por este requisito e pelo R11, transferir o conteúdo do silver para a memória do processo Python, agregá-lo ali e reinseri-lo no gold. O resultado é equivalente, mas o procedimento transporta 100.000 linhas pela rede duas vezes para executar uma agregação que o banco realiza localmente, e não é escalável.
 
 Cabem ao `publicar.py` as responsabilidades de orquestração, não supridas pelo arquivo SQL isoladamente:
 
@@ -278,6 +278,9 @@ O MongoDB e o PostgreSQL estão disponíveis na máquina virtual da disciplina. 
 - **R8 — Publicação do gold.** Arquivo `sql/gold.sql` criando o schema e as tabelas agregadas, e script `publicar.py` que o executa, repovoa as tabelas a partir do silver e registra o resultado da execução. A agregação ocorre no banco, nos termos da seção 5.1. Idempotente.
 - **R9 — Análises finais.** Arquivo `sql/consultas.sql` com as oito análises da seção 7: as análises 1 e 2 sobre o schema `silver`; as análises 3 a 7 e a proposta pelo grupo como leitura direta das tabelas do schema `gold`, sem agregação nem junção na consulta final.
 - **R10 — Documentação.** Arquivos `README.md` e `RELATORIO.md`, com o conteúdo exigido na seção *Documentação*.
+- **R11 — Restrição de bibliotecas.** **O uso de `pandas` não é permitido em nenhuma etapa deste trabalho**, nem de qualquer outra biblioteca de manipulação de dados tabulares em memória, como `polars`, `numpy` ou `pyarrow`. São admitidos um cliente HTTP (`requests` ou `httpx`), os drivers de banco (`pymongo` e `psycopg`) e a biblioteca padrão do Python, na qual os módulos `csv` e `json` bastam para ler as fontes deste trabalho. Bibliotecas não previstas aqui devem ser justificadas no `README.md`, e o `requirements.txt` deve listar exatamente o que o pipeline utiliza.
+
+  A restrição decorre do objeto da disciplina. Um `DataFrame` intermediário entre a fonte e o banco desloca para a memória do processo Python o trabalho que cabe a cada camada: a conciliação de chaves vira um `merge`, a agregação vira um `groupby`, e o modelo dimensional deixa de ser exercitado. O que se avalia aqui é a modelagem e o uso dos dois bancos, não a manipulação de estruturas tabulares em memória.
 
 ### Verificação na correção
 
@@ -286,6 +289,7 @@ A avaliação não se restringe à leitura do código. Os seguintes procedimento
 - **Os três scripts serão executados duas vezes consecutivas**, na ordem, a partir de instâncias vazias do MongoDB e do PostgreSQL. A segunda execução não pode duplicar documentos ou linhas, nem realizar requisições à PokéAPI.
 - **O script `carregar.py` será executado sem acesso à rede.** A falha nessa condição demonstra que o script consulta a API ou os arquivos originais, e não a camada bronze.
 - **Uma das perguntas das análises 3 a 7 será formulada** e deve ser respondida por leitura de uma única tabela do schema `gold`, nos termos da seção 5: `WHERE`, `ORDER BY` e `LIMIT` são admitidos; `GROUP BY`, funções de agregação e junção com o `silver` indicam que a camada gold não cumpre sua função.
+- **As dependências e as importações dos três scripts serão inspecionadas**, para verificar o cumprimento do R11. A presença de `pandas` ou equivalente, no `requirements.txt` ou em qualquer `import`, caracteriza descumprimento de requisito.
 - **Será formulada ao modelo uma pergunta de negócio não constante deste enunciado**, de natureza equivalente às oito análises. Ela deve ser respondível por uma consulta sobre o schema `silver`, sem alteração do esquema, sem acesso à camada bronze e sem releitura dos arquivos CSV. Um modelo dimensional destina-se a responder perguntas não previstas em sua construção.
 
 ## 7. Análises
