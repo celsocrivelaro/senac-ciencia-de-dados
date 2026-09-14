@@ -209,13 +209,13 @@ A estrutura a seguir é uma referência **de alto nível**, que indica quais tab
 | `silver.dim_tipo` | os tipos, com denominação legível na consulta | 18, mais o membro especial |
 | `silver.dim_geracao` | as gerações, com denominação e região | 6 |
 | `silver.efetividade_tipo` | o multiplicador de dano de cada tipo atacante contra cada tipo defensor | 324 |
-| `silver.log_conciliacao` | o resultado da conciliação de chaves: registros conciliados, não conciliados e o motivo | 800 |
+| `silver.log_conciliacao` | opcional: o resultado da conciliação de chaves, caso o grupo prefira a tabela ao arquivo `conciliacao.csv` | 800 |
 
 Três ressalvas quanto a esta sugestão:
 
 - **A denominação `fato_confronto` é deliberadamente neutra** quanto ao grão. Ela não indica se uma linha representa um combate ou uma participação em combate, o que permanece como decisão 1 da seção 4.2 e determina se a tabela terá 50 mil ou 100 mil linhas.
 - **A tabela `efetividade_tipo` figura como estrutura separada, o que constitui uma alternativa entre outras.** A decisão 3 permanece em aberto: são igualmente admissíveis uma tabela ponte, uma dimensão de confronto ou uma coluna na fato, com custos distintos no caso de defensor com dois tipos.
-- **A tabela `log_conciliacao` não integra o esquema estrela.** Não é fato nem dimensão: constitui o artefato de auditoria exigido pelo requisito R4, e não é consultada por nenhuma análise.
+- **A tabela `log_conciliacao` não integra o esquema estrela, e é opcional.** Não é fato nem dimensão: constitui uma das duas formas de entregar o artefato de auditoria exigido pelo requisito R4, cuja forma preferida é o arquivo `conciliacao.csv`. Não é consultada por nenhuma análise. O grupo que optar pelo arquivo não precisa criá-la.
 
 A sugestão omite deliberadamente a localização dos atributos de status e a forma de representar as diferenças entre combatentes, correspondentes às decisões 2 e 5.
 
@@ -271,7 +271,7 @@ O MongoDB e o PostgreSQL estão disponíveis na máquina virtual da disciplina. 
 - **R1 — Extração da API.** Script `extrair.py` que obtém `/pokemon`, `/pokemon-species` e `/type` para o escopo definido na seção 1.1, incluindo **todas as formas alternativas** das 721 espécies, e grava o conteúdo na camada bronze sem modificação. A segunda execução consecutiva do script deve realizar zero requisições.
 - **R2 — Extração dos arquivos CSV.** O mesmo script, ou um segundo script, carrega `pokemon.csv` e `combats.csv` na camada bronze, com um documento por linha, preservando os valores como texto quando a conversão for ambígua.
 - **R3 — Linhagem e idempotência.** Todo documento da camada bronze contém `_fonte`, `_url` ou caminho do arquivo, e `_ingerido_em`. A carga utiliza `upsert` com `_id` derivado da chave natural. A segunda execução não duplica documentos.
-- **R4 — Conciliação de chaves.** O script `carregar.py` resolve a correspondência entre o campo `#` do CSV e o número da Pokédex por nome. A estratégia de normalização deve ser descrita no `README.md`, acompanhada de um **relatório de conciliação**, na forma de arquivo ou da tabela `silver.log_conciliacao`, contendo a quantidade de registros conciliados, a relação dos não conciliados e o tratamento aplicado a estes. O descarte silencioso de registros não conciliados não é admitido.
+- **R4 — Conciliação de chaves.** O script `carregar.py` resolve a correspondência entre o campo `#` do CSV e o número da Pokédex por nome. A estratégia de normalização deve ser descrita no `README.md`, acompanhada de um **relatório de conciliação** contendo a quantidade de registros conciliados, a relação dos não conciliados e o tratamento aplicado a estes. A forma preferida é o arquivo `conciliacao.csv`, versionado no repositório; o grupo que preferir pode entregá-lo como a tabela `silver.log_conciliacao`, descrita na seção 4.3. Uma das duas formas basta. O descarte silencioso de registros não conciliados não é admitido.
 - **R5 — Modelagem do silver.** O modelo dimensional satisfaz os requisitos RS1 a RS8 da seção 4.1, e as seis decisões da seção 4.2 estão tomadas e justificadas no `README.md`. Nenhum combate pode ser omitido: as batalhas do registro sem nome, descrito na seção 1.4, permanecem no modelo, representadas por membro especial. Entram 50.000 combates e permanecem 50.000 combates.
 - **R6 — DDL versionado.** O arquivo `sql/silver.sql` contém os comandos `CREATE TABLE` de todo o modelo, com as restrições `PRIMARY KEY` e `FOREIGN KEY` declaradas. O modelo constitui artefato do repositório, e não estado exclusivo do banco de quem o executou.
 - **R7 — Carga do silver.** Script `carregar.py` que lê da camada bronze, e não dos arquivos ou da API, transforma e popula o PostgreSQL. Idempotente. A necessidade de qualquer informação ausente da camada bronze indica que a extração está incompleta.
@@ -312,6 +312,8 @@ O enunciado especifica o que cada análise deve responder. A forma de obtê-la a
 5. **Relação entre diferença de velocidade e vitória.** Agrupar os confrontos por faixa de diferença de velocidade entre os combatentes e calcular a taxa de vitórias de cada faixa. A quantidade de faixas e a posição dos cortes cabem ao grupo, e devem ser justificadas, uma vez que alteram a leitura do resultado.
 6. **Relação entre vantagem de tipo e vitória.** Cruzar o resultado dos confrontos com a efetividade obtida da PokéAPI e calcular a taxa de vitórias por multiplicador, com uma linha por multiplicador existente no modelo. Os valores possíveis são 0, 0,5, 1 e 2 quando se considera apenas o tipo primário do defensor, e 0, 0,25, 0,5, 1, 2 e 4 quando se consideram seus dois tipos, conforme a distinção da seção 1.1. Qual dos dois critérios foi adotado decorre da decisão 3 da seção 4.2 e deve ser declarado no `README.md`. Caso a mecânica do jogo esteja refletida nos dados, os multiplicadores superiores a 1 devem corresponder a taxa de vitórias significativamente superior; **um resultado que não mostre esse efeito, corretamente apurado e interpretado, constitui resposta válida** — as batalhas são simuladas, e o programa que as produziu pode não ter empregado a tabela de tipos. Esta análise verifica a decisão 3 da seção 4.2: sem modelagem da efetividade, ela não é obtenível em SQL.
 7. **Matriz de confronto entre tipos**, de 18 por 18 posições, com a taxa de vitórias do tipo atacante contra o tipo defensor e o multiplicador de efetividade correspondente. Identificar as posições em que os dois valores divergem.
+
+   A orientação da matriz decorre do **vencedor**, e não da coluna `First_pokemon`: a célula (A, B) contém a proporção dos confrontos entre um Pokémon de tipo primário A e um de tipo primário B que foram vencidos pelo de tipo A. Cada confronto alimenta duas células — como vitória em (A, B) e como derrota em (B, A) —, de modo que as duas somam 1. Quem atacou primeiro não participa desta análise.
 
 ### Análise proposta pelo grupo
 
@@ -371,6 +373,7 @@ repositorio/
 │   ├── gold.sql                  # schema e tabelas agregadas
 │   └── consultas.sql             # as sete análises e a proposta pelo grupo
 ├── conciliacao.csv               # relatório de conciliação exigido por R4
+│                                 # (dispensável se entregue como silver.log_conciliacao)
 └── dados_brutos/                 # cache local, não versionado (.gitignore)
 ```
 
