@@ -1,28 +1,26 @@
-# Aula 14 — Processamento Massivo: código
+# Aula 14 — Estruturas Probabilísticas: código
 
-| Notebook | Conteúdo |
-|---|---|
-| `codigo01-bloom-cuco-count-min-top-k.ipynb` | Filtro de Bloom, filtro de cuco, *count-min sketch* e *Space-Saving* implementados por extenso, comparados com `set` e `dict`. |
-| `codigo02-hyperloglog-e-minhash.ipynb` | HyperLogLog e MinHash implementados por extenso: erro em função de $p$ e de $k$, fusão de *sketches*. |
-| `codigo03-redis.ipynb` | As seis estruturas probabilísticas do Redis (`BF`, `CF`, `CMS`, `TOPK`, `PF`, `TDIGEST`) num banco gratuito do Redis Cloud, comparadas com a resposta exata. |
-| `codigo04-mapreduce.ipynb` | MapReduce simulado em Python puro: *map*, embaralhamento, *reduce*, combinador, média por (soma, contagem) e contagem de distintos com HyperLogLog. |
+Um notebook por estrutura probabilística do Redis, todos sobre o mesmo registro de chamadas sintético, gerado no próprio notebook:
 
-## Execução
+| Notebook | Estrutura | Pergunta |
+|---|---|---|
+| `codigo01-redis-bloom.ipynb` | filtro de Bloom (`BF.*`) | o número está na lista de bloqueio? |
+| `codigo02-redis-cuco.ipynb` | filtro de cuco (`CF.*`) | idem, numa lista da qual números saem |
+| `codigo03-redis-count-min.ipynb` | *count-min sketch* (`CMS.*`) | quantas chamadas originou cada número? |
+| `codigo04-redis-top-k.ipynb` | *top-k* (`TOPK.*`) | quais números mais originaram chamadas? |
+| `codigo05-redis-hyperloglog.ipynb` | HyperLogLog (`PF*`) | quantos números distintos originaram chamadas? |
+| `codigo06-redis-t-digest.ipynb` | *t-digest* (`TDIGEST.*`) | qual o p99 da duração das chamadas? |
 
-Os notebooks rodam no Jupyter do ambiente da disciplina. Dependências:
+## Execução no Google Colab
 
-```bash
-pip install numpy matplotlib redis python-dotenv
-```
+Os notebooks rodam no Google Colab (ou em qualquer Jupyter). A primeira célula de código instala o cliente `redis` do Python; `numpy` já vem no Colab.
 
-Os notebooks 01, 02 e 04 não dependem de serviço externo.
+## Banco do Redis Cloud
 
-## Banco do Redis Cloud (notebook 03)
-
-O notebook 03 usa um banco gratuito do Redis Cloud, que já traz os tipos probabilísticos.
+Os notebooks usam um banco gratuito do Redis Cloud, que já traz os tipos probabilísticos.
 
 1. Criar uma conta em https://cloud.redis.io/ e, no painel, criar um banco no plano gratuito (*Free*), em qualquer região.
 2. Na página do banco, em *Connect*, copiar a URL de conexão no formato `redis://default:SENHA@HOST:PORTA` (a senha fica em *Security*, campo *Default user password*).
-3. Nesta pasta, copiar o arquivo `.env.example` para `.env` e colar a URL na variável `REDIS_URL`.
+3. Em cada notebook, colar a URL no lugar do valor de exemplo de `REDIS_URL`, na célula de conexão.
 
-O arquivo `.env` contém a senha do banco e não deve ser versionado. O plano gratuito tem limite de memória de alguns megabytes; o notebook usa volumes pequenos e apaga as chaves que cria (prefixo `aula14:`) ao final.
+A URL contém a senha do banco: não publique o notebook com ela preenchida. O plano gratuito tem limite de memória de alguns megabytes; cada notebook usa volumes pequenos e apaga ao final as chaves que criou (prefixo `aula14:`).
