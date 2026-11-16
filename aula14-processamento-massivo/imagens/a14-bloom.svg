@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 400" font-family="Helvetica, Arial, sans-serif">
+  <rect width="960" height="400" fill="white"/>
+  <text x="30" y="40" font-size="24" fill="#1f4e79">m = 16 bits, k = 3 funções de hash</text>
+  <!-- itens inseridos -->
+  <rect x="150" y="65" width="90" height="44" rx="8" fill="#2e75b6"/><text x="195" y="95" font-size="24" fill="white" text-anchor="middle">A</text>
+  <rect x="600" y="65" width="90" height="44" rx="8" fill="#c55a11"/><text x="645" y="95" font-size="24" fill="white" text-anchor="middle">B</text>
+  <g stroke-width="3" fill="none">
+    <line x1="195" y1="109" x2="146" y2="178" stroke="#2e75b6"/>
+    <line x1="195" y1="109" x2="366" y2="178" stroke="#2e75b6"/>
+    <line x1="195" y1="109" x2="586" y2="178" stroke="#2e75b6"/>
+    <line x1="645" y1="109" x2="278" y2="178" stroke="#c55a11"/>
+    <line x1="645" y1="109" x2="366" y2="178" stroke="#c55a11"/>
+    <line x1="645" y1="109" x2="718" y2="178" stroke="#c55a11"/>
+  </g>
+  <!-- vetor de bits: célula i em x = 80 + 44*i -->
+  <g font-size="22" text-anchor="middle">
+    <g fill="#f2f2f2" stroke="#555" stroke-width="1.5">
+      <rect x="80" y="180" width="44" height="50"/><rect x="124" y="180" width="44" height="50"/><rect x="168" y="180" width="44" height="50"/><rect x="212" y="180" width="44" height="50"/>
+      <rect x="256" y="180" width="44" height="50"/><rect x="300" y="180" width="44" height="50"/><rect x="344" y="180" width="44" height="50"/><rect x="388" y="180" width="44" height="50"/>
+      <rect x="432" y="180" width="44" height="50"/><rect x="476" y="180" width="44" height="50"/><rect x="520" y="180" width="44" height="50"/><rect x="564" y="180" width="44" height="50"/>
+      <rect x="608" y="180" width="44" height="50"/><rect x="652" y="180" width="44" height="50"/><rect x="696" y="180" width="44" height="50"/><rect x="740" y="180" width="44" height="50"/>
+    </g>
+    <g fill="#d6e6f5" stroke="#555" stroke-width="1.5">
+      <rect x="124" y="180" width="44" height="50"/><rect x="256" y="180" width="44" height="50"/><rect x="344" y="180" width="44" height="50"/><rect x="564" y="180" width="44" height="50"/><rect x="696" y="180" width="44" height="50"/>
+    </g>
+    <text x="102" y="214">0</text><text x="146" y="214" font-weight="bold">1</text><text x="190" y="214">0</text><text x="234" y="214">0</text>
+    <text x="278" y="214" font-weight="bold">1</text><text x="322" y="214">0</text><text x="366" y="214" font-weight="bold">1</text><text x="410" y="214">0</text>
+    <text x="454" y="214">0</text><text x="498" y="214">0</text><text x="542" y="214">0</text><text x="586" y="214" font-weight="bold">1</text>
+    <text x="630" y="214">0</text><text x="674" y="214">0</text><text x="718" y="214" font-weight="bold">1</text><text x="762" y="214">0</text>
+    <g font-size="15" fill="#666">
+      <text x="102" y="250">0</text><text x="146" y="250">1</text><text x="190" y="250">2</text><text x="234" y="250">3</text><text x="278" y="250">4</text><text x="322" y="250">5</text><text x="366" y="250">6</text><text x="410" y="250">7</text>
+      <text x="454" y="250">8</text><text x="498" y="250">9</text><text x="542" y="250">10</text><text x="586" y="250">11</text><text x="630" y="250">12</text><text x="674" y="250">13</text><text x="718" y="250">14</text><text x="762" y="250">15</text>
+    </g>
+  </g>
+  <!-- consultas -->
+  <text x="30" y="305" font-size="22" fill="#222">consultar C: bits 1, 4, 14  →  1, 1, 1  →  <tspan fill="#c00000" font-weight="bold">"provavelmente sim" (falso positivo)</tspan></text>
+  <text x="30" y="350" font-size="22" fill="#222">consultar D: bits 2, 6, 11  →  0, …     →  <tspan fill="#1f4e79" font-weight="bold">"certamente não"</tspan></text>
+</svg>

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 380" font-family="Helvetica, Arial, sans-serif">
+  <rect width="960" height="380" fill="white"/>
+  <text x="30" y="38" font-size="22" fill="#1f4e79">b = 4 posições por balde; impressão digital fp de 8 bits (hexadecimal)</text>
+  <rect x="30" y="70" width="250" height="90" rx="10" fill="#2e75b6"/>
+  <text x="155" y="105" font-size="22" fill="white" text-anchor="middle">inserir x</text>
+  <text x="155" y="138" font-size="20" fill="white" text-anchor="middle">fp(x) = 3a</text>
+  <text x="30" y="200" font-size="19" fill="#222">i₁ = h(x) = 2</text>
+  <text x="30" y="232" font-size="19" fill="#222">i₂ = i₁ ⊕ h(3a) = 5</text>
+  <g font-size="20" fill="#222"><text x="370" y="117">balde 2</text><text x="370" y="257">balde 5</text></g>
+  <g stroke="#555" stroke-width="1.5" font-size="22" text-anchor="middle">
+    <rect x="470" y="85" width="90" height="50" fill="#f2f2f2"/><rect x="560" y="85" width="90" height="50" fill="#f2f2f2"/><rect x="650" y="85" width="90" height="50" fill="#f2f2f2"/><rect x="740" y="85" width="90" height="50" fill="#f2f2f2"/>
+    <rect x="470" y="225" width="90" height="50" fill="#f2f2f2"/><rect x="560" y="225" width="90" height="50" fill="#f2f2f2"/><rect x="650" y="225" width="90" height="50" fill="#fbe2d0" stroke="#c55a11" stroke-width="3"/><rect x="740" y="225" width="90" height="50" fill="white"/>
+  </g>
+  <g font-size="22" text-anchor="middle" fill="#222">
+    <text x="515" y="118">7f</text><text x="605" y="118">c1</text><text x="695" y="118">09</text><text x="785" y="118">e4</text>
+    <text x="515" y="258">52</text><text x="605" y="258">18</text><text x="695" y="258" fill="#c55a11" font-weight="bold">3a</text><text x="785" y="258" fill="#999">—</text>
+  </g>
+  <text x="850" y="118" font-size="18" fill="#c00000">cheio</text>
+  <path d="M280 130 C 360 170, 520 190, 690 222" stroke="#c55a11" stroke-width="3" fill="none"/>
+  <polygon points="690,222 676,212 680,226" fill="#c55a11"/>
+  <text x="30" y="320" font-size="20" fill="#222">consultar x: procurar 3a nos baldes 2 e 5</text>
+  <text x="520" y="320" font-size="20" fill="#222">remover x: apagar 3a do balde 5</text>
+  <text x="30" y="355" font-size="18" fill="#555">com os dois baldes cheios, uma fp é desalojada para o balde alternativo dela (o "ovo de cuco")</text>
+</svg>

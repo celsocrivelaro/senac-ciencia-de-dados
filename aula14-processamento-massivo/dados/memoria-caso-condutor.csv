@@ -1,0 +1,8 @@
+estrutura,pergunta,bytes
+set exato,pertinência e cardinalidade,40000000000
+Bloom (1%),pertinência,6000000000
+"cuco (0,2%)",pertinência com remoção,7900000000
+count-min (eps=1e-6),frequência,54000000
+HyperLogLog (Redis),cardinalidade,12288
+t-digest (delta=100),quantis,8192
+MinHash (k=200),similaridade,1638

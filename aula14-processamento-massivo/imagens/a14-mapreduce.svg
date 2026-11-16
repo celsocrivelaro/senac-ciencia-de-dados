@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 440" font-family="Helvetica, Arial, sans-serif">
+  <rect width="980" height="440" fill="white"/>
+  <defs><marker id="s" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#555"/></marker></defs>
+  <g font-size="18" fill="#1f4e79" text-anchor="middle" font-weight="bold">
+    <text x="85" y="35">entrada</text><text x="275" y="35">map</text><text x="470" y="35">combinador</text><text x="660" y="35">embaralhamento</text><text x="880" y="35">reduce</text>
+  </g>
+  <g font-size="17" text-anchor="middle">
+    <rect x="25" y="60" width="120" height="70" rx="6" fill="#f2f2f2" stroke="#555"/><text x="85" y="101">bloco 1</text>
+    <rect x="25" y="180" width="120" height="70" rx="6" fill="#f2f2f2" stroke="#555"/><text x="85" y="221">bloco 2</text>
+    <rect x="25" y="300" width="120" height="70" rx="6" fill="#f2f2f2" stroke="#555"/><text x="85" y="341">bloco 3</text>
+    <rect x="205" y="60" width="140" height="70" rx="6" fill="#2e75b6"/><text x="275" y="90" fill="white">map 1</text><text x="275" y="114" fill="white" font-size="14">(a,1)(a,1)(b,1)</text>
+    <rect x="205" y="180" width="140" height="70" rx="6" fill="#2e75b6"/><text x="275" y="210" fill="white">map 2</text><text x="275" y="234" fill="white" font-size="14">(a,1)(c,1)</text>
+    <rect x="205" y="300" width="140" height="70" rx="6" fill="#2e75b6"/><text x="275" y="330" fill="white">map 3</text><text x="275" y="354" fill="white" font-size="14">(b,1)(b,1)(a,1)</text>
+    <rect x="405" y="60" width="130" height="70" rx="6" fill="#d6e6f5" stroke="#2e75b6"/><text x="470" y="101">(a,2)(b,1)</text>
+    <rect x="405" y="180" width="130" height="70" rx="6" fill="#d6e6f5" stroke="#2e75b6"/><text x="470" y="221">(a,1)(c,1)</text>
+    <rect x="405" y="300" width="130" height="70" rx="6" fill="#d6e6f5" stroke="#2e75b6"/><text x="470" y="341">(b,2)(a,1)</text>
+    <rect x="800" y="100" width="160" height="80" rx="6" fill="#c55a11"/><text x="880" y="132" fill="white">reduce 1 (a)</text><text x="880" y="160" fill="white" font-size="15">a: 2+1+1 = 4</text>
+    <rect x="800" y="250" width="160" height="80" rx="6" fill="#c55a11"/><text x="880" y="282" fill="white">reduce 2 (b, c)</text><text x="880" y="310" fill="white" font-size="15">b: 1+2 = 3   c: 1</text>
+  </g>
+  <g stroke="#555" stroke-width="2" marker-end="url(#s)">
+    <line x1="145" y1="95" x2="203" y2="95"/><line x1="145" y1="215" x2="203" y2="215"/><line x1="145" y1="335" x2="203" y2="335"/>
+    <line x1="345" y1="95" x2="403" y2="95"/><line x1="345" y1="215" x2="403" y2="215"/><line x1="345" y1="335" x2="403" y2="335"/>
+    <line x1="535" y1="95" x2="796" y2="130"/><line x1="535" y1="95" x2="796" y2="280"/>
+    <line x1="535" y1="215" x2="796" y2="145"/><line x1="535" y1="215" x2="796" y2="295"/>
+    <line x1="535" y1="335" x2="796" y2="160"/><line x1="535" y1="335" x2="796" y2="310"/>
+  </g>
+  <text x="660" y="400" font-size="17" text-anchor="middle" fill="#555">redutor = hash(chave) mod R</text>
+  <text x="25" y="425" font-size="16" fill="#555">o combinador só vale para operação associativa e comutativa (soma, máximo, fusão de sketch)</text>
+</svg>

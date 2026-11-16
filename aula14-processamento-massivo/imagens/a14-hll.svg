@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 340" font-family="Helvetica, Arial, sans-serif">
+  <rect width="960" height="340" fill="white"/>
+  <text x="30" y="38" font-size="22" fill="#1f4e79">p = 4  →  m = 16 registradores</text>
+  <text x="30" y="92" font-size="22" fill="#222">h(x) =</text>
+  <rect x="110" y="62" width="150" height="46" fill="#d6e6f5" stroke="#2e75b6" stroke-width="2"/>
+  <text x="185" y="93" font-size="24" text-anchor="middle" font-family="Courier New, monospace">1011</text>
+  <rect x="260" y="62" width="380" height="46" fill="#fbe2d0" stroke="#c55a11" stroke-width="2"/>
+  <text x="450" y="93" font-size="24" text-anchor="middle" font-family="Courier New, monospace">0001 0110 1101 …</text>
+  <text x="185" y="135" font-size="18" text-anchor="middle" fill="#2e75b6">p bits: j = 11</text>
+  <text x="450" y="135" font-size="18" text-anchor="middle" fill="#c55a11">três zeros, depois 1: ρ = 4</text>
+  <text x="680" y="93" font-size="22" fill="#222">M[11] = max(M[11], 4)</text>
+  <g font-size="15" fill="#666" text-anchor="middle">
+    <text x="77" y="192">0</text><text x="129" y="192">1</text><text x="181" y="192">2</text><text x="233" y="192">3</text><text x="285" y="192">4</text><text x="337" y="192">5</text><text x="389" y="192">6</text><text x="441" y="192">7</text>
+    <text x="493" y="192">8</text><text x="545" y="192">9</text><text x="597" y="192">10</text><text x="649" y="192">11</text><text x="701" y="192">12</text><text x="753" y="192">13</text><text x="805" y="192">14</text><text x="857" y="192">15</text>
+  </g>
+  <g stroke="#555" stroke-width="1.5" fill="#f2f2f2">
+    <rect x="51" y="200" width="52" height="50"/><rect x="103" y="200" width="52" height="50"/><rect x="155" y="200" width="52" height="50"/><rect x="207" y="200" width="52" height="50"/><rect x="259" y="200" width="52" height="50"/><rect x="311" y="200" width="52" height="50"/><rect x="363" y="200" width="52" height="50"/><rect x="415" y="200" width="52" height="50"/>
+    <rect x="467" y="200" width="52" height="50"/><rect x="519" y="200" width="52" height="50"/><rect x="571" y="200" width="52" height="50"/><rect x="623" y="200" width="52" height="50" fill="#fbe2d0" stroke="#c55a11" stroke-width="3"/><rect x="675" y="200" width="52" height="50"/><rect x="727" y="200" width="52" height="50"/><rect x="779" y="200" width="52" height="50"/><rect x="831" y="200" width="52" height="50"/>
+  </g>
+  <g font-size="22" text-anchor="middle" fill="#222">
+    <text x="77" y="233">3</text><text x="129" y="233">1</text><text x="181" y="233">4</text><text x="233" y="233">2</text><text x="285" y="233">2</text><text x="337" y="233">5</text><text x="389" y="233">1</text><text x="441" y="233">3</text>
+    <text x="493" y="233">2</text><text x="545" y="233">2</text><text x="597" y="233">1</text><text x="649" y="233" font-weight="bold" fill="#c55a11">4</text><text x="701" y="233">3</text><text x="753" y="233">2</text><text x="805" y="233">6</text><text x="857" y="233">2</text>
+  </g>
+  <text x="30" y="300" font-size="22" fill="#222">estimativa: E = α·m²·(Σ 2^(−M[j]))⁻¹   — média harmônica dos 2^M[j]</text>
+</svg>
